@@ -3,6 +3,7 @@ from getpass import getpass
 import os
 import admin
 import user
+import hashlib
 
 # Program Mulai
 cek_stok.init_object()
