@@ -1,3 +1,2 @@
-def per_day(date):
-
-
+esin Kasir!")
+    username = input("Username

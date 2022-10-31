@@ -54,5 +54,3 @@ def main():
     per_hour("2022-10-28", df)
     per_day(df)
     per_week(df)
-
-main()

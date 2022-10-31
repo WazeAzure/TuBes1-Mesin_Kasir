@@ -28,7 +28,7 @@ def sistem_admin():
 
     isRun = True
     while isRun:
-        tampilan()
+        tampilan() 
 
         temp = input("> ")
         if temp == '0':

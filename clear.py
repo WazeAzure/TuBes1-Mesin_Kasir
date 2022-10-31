@@ -10,3 +10,6 @@ def cls():
     # for mac and linux(here, os.name is 'posix')
     else:
         _ = system('clear')
+
+def authenticate_user_input(ans, arr):
+    print(ans, arr)
