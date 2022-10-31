@@ -9,7 +9,7 @@ def save_data(arr, diskon, tot):
         write = writer(f)
         date = datetime.date.today()
         time = datetime.datetime.now().time()
-        write.writerow([date + ' ' + time, arr, diskon, tot])
+        write.writerow([date, time, arr, diskon, tot])
 
 def per_hour(date, df):
 

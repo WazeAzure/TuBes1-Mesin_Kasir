@@ -8,16 +8,16 @@ daftar_belanja = []
 # fungsi untuk nge print daftar item
 def tampilan():
     # Judul
-    print("=================================================")
-    print("||        Selamat Datang di Sistem USER        ||")
-    print("=================================================")
+    print("======================================================")
+    print("||           Selamat Datang di Sistem USER          ||")
+    print("======================================================")
 
-    print("||" + "Daftar Item".center(45) + "||")
+    print("||" + "Daftar Item".center(50) + "||")
 
     for x in daftar_menu:
-        print("||" + str('\t'+x).expandtabs(2).ljust(8) + '|' + str('\t'+daftar_menu[x]['nama']).expandtabs(3).ljust(25) + '|' + str('\t' + str(daftar_menu[x]['harga'])).expandtabs(3).ljust(10) + "||")
+        print("||" + str('\t'+x).expandtabs(2).ljust(8) + '|' + str('\t'+daftar_menu[x]['nama']).expandtabs(3).ljust(25) + '|' +  str('\t' + "Rp{:,.1f}".format(daftar_menu[x]['harga'])).expandtabs(3).ljust(15) + "||")
 
-    print("=================================================")
+    print("======================================================")
 
 def show_daftar_belanja():
     clear.cls()
@@ -28,7 +28,15 @@ def show_daftar_belanja():
 
     i = 1
     for x in daftar_belanja:
-        print("||" + str('\t'+str(i)).expandtabs(2).ljust(4) + '|' + str('\t'+x[0]).expandtabs(3).ljust(22) + '|' + str('\t' + str(x[1])).expandtabs(2).ljust(4) + '|' + str('\t' + 'Rp' + str(x[2])).expandtabs(3).ljust(9) + "||")
+        print("||" +
+        str('\t'+str(i)).expandtabs(2).ljust(4) +
+        '|' +
+        str('\t'+x[0]).expandtabs(3).ljust(22) +
+        '|' +
+        str('\t' + str(x[1])).expandtabs(2).ljust(4) +
+        '|' + '\t'.expandtabs(3) +
+        'Rp{:,.1f}'.format(x[2]).ljust(9) +
+        "||")
         i += 1
 
     print("=================================================")
@@ -36,9 +44,17 @@ def show_daftar_belanja():
 def terima_masukan():
     clear.cls()
     tampilan()
-    id = input("Masukkan kode item: ")
-    qty = int(input("Masukkan jumlah: "))
-    diskon = float(input("Masukkan diskon item: "))
+
+    while True:
+        try:
+            id = input("Masukkan kode item: ")
+            qty = int(input("Masukkan jumlah: "))
+            diskon = float(input("Masukkan diskon item: "))
+            break
+        except:
+            print("Tolong Masukkan angka")
+            continue
+        
 
     hasil_cek = cek_stok.cek_stok(id, qty)
 
