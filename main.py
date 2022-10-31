@@ -5,6 +5,7 @@ import admin
 import user
 import hashlib
 import account
+import clear
 
 def main():
     # Program Mulai
@@ -17,10 +18,11 @@ def main():
     password = getpass()
 
     hasil_cek = account.check_credential(username, password)
-    if hasil_cek[0] and hasil_cek == 'admin' :
+
+    if hasil_cek[0] and hasil_cek[1] == 'admin' :
         # sistem_admin
         admin.sistem_admin()
-    elif hasil_cek[0] and hasil_cek == 'user':
+    elif hasil_cek[0] and hasil_cek[1] == 'user':
         # Kerjain User biasa disini
         print("Welcome to mesin kasir")
         isRun = True
@@ -30,5 +32,8 @@ def main():
             next = input("Lanjut? y / n: ")
             if next == 'n':
                 isRun = False
+    else:
+        clear.cls()
+        main()
 
 main()
