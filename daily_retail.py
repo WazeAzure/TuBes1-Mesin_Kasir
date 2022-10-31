@@ -7,9 +7,8 @@ from csv import writer
 def save_data(arr, diskon, tot):
     with open('retails.csv', 'a', newline='') as f:
         write = writer(f)
-        date = datetime.date.today()
-        time = datetime.datetime.now().time()
-        write.writerow([date, time, arr, diskon, tot])
+        date = datetime.datetime.now()
+        write.writerow([date , arr, diskon, tot])
 
 def per_hour(date, df):
 
@@ -29,13 +28,14 @@ def per_hour(date, df):
     plt.show()
 
 def per_day(df):
-    df = df.groupby(['date']).mean()
+    df = df.groupby(['date']).sum()
+    df = df.resample('D').sum()
     df.plot(kind='bar')
     plt.title('Penjualan per Hari')
     plt.show()
 
 def per_week(df):
-    df = df.resample('W').sum()
+    df = df.resample('7D').sum()
     df.plot(kind='bar')
     plt.title('Penjualan per Minggu')
     plt.show()
@@ -45,8 +45,9 @@ def main():
 
     # Group by date
     temp = df
-    df['time'] = pd.to_datetime(df['time'])
-    df = df.set_index(['time'])
+    print(df)
+    df['date'] = pd.to_datetime(df['date'])
+    df = df.set_index(['date'])
     df = df.sort_index()
     print(df.describe())
     print(df)
@@ -54,3 +55,5 @@ def main():
     per_hour("2022-10-28", df)
     per_day(df)
     per_week(df)
+
+main()

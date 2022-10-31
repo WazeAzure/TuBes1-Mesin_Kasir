@@ -65,7 +65,26 @@ def sistem_admin():
             cek_stok.update_item(item_id, args)
         elif temp == '5':
             daily_retail.main()
-        else:
-            print("masuk sini")
-            daftar_perintah[temp][1]()
-            input("press any key to continue...")
+        elif temp == '1':
+            stok = (input("Masukkan item yang ingin di cek stoknya: "))
+            hasil = cek_stok.cek_stok(stok,1)
+            if hasil[0]:
+                print("=" * 74 )
+                print("||" + "id".center(10) + "nama".center(30) + "harga".center(20) + "stok".center(10) + "||")
+                print("||" + "-" * 70 + "||")
+                print("||" + stok.center(10) + "\t".expandtabs(3) + cek_stok.item_list[stok]['nama'].ljust(27) + "Rp{:,.1f}".format(cek_stok.item_list[stok]['harga']).ljust(20) + str(cek_stok.item_list[stok]['stok']).center(10) + "||")
+                print("=" * 74 )
+            input("Press Enter to continue...")
+        elif temp == '2':
+            data = daftar_perintah['2'][1]()
+
+            print("=" * 74)
+            print("||" + "DAFTAR STOK DI GUDANG".center(70) + "||")
+            print("||" + "-" * 70 + "||")
+            print("||" + "id".center(10) + "nama".center(30) + "harga".center(20) + "stok".center(10) + "||")
+            print("||" + "-" * 70 + "||")
+            for x in data:
+                print("||" + str(x).center(10) + "\t".expandtabs(3) + cek_stok.item_list[x]['nama'].ljust(27) + "Rp{:,.1f}".format(cek_stok.item_list[x]['harga']).ljust(20) + str(cek_stok.item_list[x]['stok']).center(10) + "||")
+            print("=" * 74)
+
+            input("Press Enter to continue...")

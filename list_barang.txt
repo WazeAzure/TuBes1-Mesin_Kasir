@@ -1,5 +1,6 @@
 item_id,nama,harga,stok,
 1001,ed,10000,9
+1002,pisang,15000,30
 1003,ed,10000,8
 1004,sssssss ssss sss,10000,17
 1005,ed o s,2000,30
