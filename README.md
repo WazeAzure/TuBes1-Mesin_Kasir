@@ -7,6 +7,15 @@
 - Edbert Eddyson Gunawan (19622071)
 
 Sebuah program mesin kasir. Dengan beberapa fitur seperti
+---
+### Pastikan Terinstall Modul
+- opencv
+- barcode
+- pyzbar
+- pandas
+- matplotlib
+- numpy
+
 
 Ini Testing dari Edbert - branch edbert.
 
