@@ -5,4 +5,7 @@
 - Akhmad Aditya Yusuf (16522231)
 - Regina Deva Carissa (19622031)
 - Edbert Eddyson Gunawan (19622071)
+
 Sebuah program mesin kasir. Dengan beberapa fitur seperti
+
+Ini Testing dari Edbert - branch edbert.
