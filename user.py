@@ -41,19 +41,75 @@ def show_daftar_belanja():
 
     print("=================================================")
 
+def kamera():
+    import cv2
+    from pyzbar.pyzbar import decode
+
+    cap = cv2.VideoCapture(0)
+
+    if (cap.isOpened() == False):
+        print("Unable to read camera feed!")
+    
+    isi_barcode = ''
+    type_barcode = ''
+    while(True):
+        ret, frame = cap.read()
+
+        if ret == True:
+            detectedBarcodes = decode(frame)
+
+            for barcode in detectedBarcodes:
+                (x, y, w, h) = barcode.rect
+                cv2.rectangle(frame, (x-10, y-10), (x+w+10, y + h+10), (255,0,0), 2)
+                isi_barcode = barcode.data
+                type_barcode = barcode.type
+                # frame = cv2.flip(frame, 1)
+            cv2.imshow('frame', frame)
+            if isi_barcode != '':
+                break
+
+            if cv2.waitKey(1) & 0xFF == ord('q'):
+                break
+        else:
+            break
+    # print(isi_barcode, type_barcode)
+    cap.release()
+    cv2.destroyAllWindows()
+    isi_barcode = str(isi_barcode)
+    isi_barcode = isi_barcode[2:len(isi_barcode)-2]
+    print(isi_barcode)
+    return isi_barcode
+
 def terima_masukan():
     clear.cls()
     tampilan()
 
+    print("Masukkan kode item: ", end=" ")
+    id = kamera()
+    id = id[8:12]
+    print(id)
+    if id == '':
+        id = input("Masukkan kode item: ")
+    
     while True:
         try:
-            id = input("Masukkan kode item: ")
             qty = int(input("Masukkan jumlah: "))
             diskon = float(input("Masukkan diskon item: "))
             break
         except:
-            print("Tolong Masukkan angka")
+            print("Tolong Masukkan Angka")
             continue
+
+    # input("Press enter to continue...")
+    # while True:
+    #     try:
+    #         id = input("Masukkan kode item: ")
+    #         qty = int(input("Masukkan jumlah: "))
+    #         diskon = float(input("Masukkan diskon item: "))
+    #         break
+    #     except:
+    #         print("Tolong Masukkan angka")
+    #         continue
         
 
     hasil_cek = cek_stok.cek_stok(id, qty)
@@ -106,7 +162,6 @@ def sistem_user():
             continue
         else:
             isRun = False
-    
     
 
     isRun = True
